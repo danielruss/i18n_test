@@ -1,0 +1,25 @@
+{
+    "default":"en",
+    "en": {
+        "next": "NEXT",
+        "back": "BACK",
+        "reset": "RESET ANSWER",
+        "response_required": "Response Required",
+        "unanswered": {
+            "type": "function",
+            "arguments":"n",
+            "body":"return `There ${n>1?'are':'is'} ${n} question${n>1?'s':''} unanswered on this page. Please answer the question${n>1?'s':''}`"
+        }
+    },
+    "es": {
+        "next": "SIGUIENTE",
+        "back": "ANTERIOR",
+        "reset": "REINICIAR RESPUESTA",
+        "response_required":"Respuesta Requerida",
+        "unanswered": {
+            "type": "function",
+            "arguments":"n",
+            "body":"return `Hay ${n>1?'are':'is'} ${n} pregunta${n>1?'s':''} sin respuesta en esta página. Por favor responda las pregunta${n>1?'s':''}`"
+        }
+    }
+}

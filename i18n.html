@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <div data-msg="unanswered" data-n="3"></div>
+        <button type="button" data-msg="next"></button>
+        <input type="button" data-msg="back">
+        <select id="select_language"></select>
+        <script type="module">
+            import {i18n} from './i18n.js'
+            window.z=new i18n()
+            await z.load_messages("./i18n.json")
+
+            function update_page() {
+                document.querySelectorAll('[data-msg]').forEach((element) => {
+                    console.log(element.tagName)
+                    if (element.tagName == "INPUT") {
+                        element.value = z.get_message(element.dataset.msg)
+                    } else {
+                        element.innerText = z.get_message(element.dataset.msg,element.dataset.n)
+                    }
+                });
+            }
+            update_page()
+
+            function fill_languages(){
+                let selectElement = document.getElementById("select_language")
+                selectElement.addEventListener("change",(event)=>{
+                    z.language=event.target.value
+                    update_page()
+                })
+                z.languages.forEach( (language) =>{
+                    selectElement.add(new Option(language,language,language==z.language,language==z.language))
+                } )
+            }
+            fill_languages()
+    
+
+        </script>
+    </body>
+</html>
