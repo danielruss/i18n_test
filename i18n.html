@@ -4,6 +4,7 @@
     </head>
     <body>
         <div data-msg="unanswered" data-n="3"></div>
+        <div data-msg="unanswered" data-n="1"></div>
         <button type="button" data-msg="next"></button>
         <input type="button" data-msg="back">
         <select id="select_language"></select>
@@ -18,7 +19,7 @@
                     if (element.tagName == "INPUT") {
                         element.value = z.get_message(element.dataset.msg)
                     } else {
-                        element.innerText = z.get_message(element.dataset.msg,element.dataset.n)
+                        element.innerHTML = z.get_message(element.dataset.msg,element.dataset.n)
                     }
                 });
             }

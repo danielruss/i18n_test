@@ -1,5 +1,4 @@
 {
-    "default":"en",
     "en": {
         "next": "NEXT",
         "back": "BACK",
@@ -19,7 +18,18 @@
         "unanswered": {
             "type": "function",
             "arguments":"n",
-            "body":"return `Hay ${n>1?'are':'is'} ${n} pregunta${n>1?'s':''} sin respuesta en esta página. Por favor responda las pregunta${n>1?'s':''}`"
+            "body":"return `Hay ${n} pregunta${n>1?'s':''} sin respuesta en esta página. Por favor responda las pregunta${n>1?'s':''}`"
+        }
+    },
+    "he":{
+        "next": "הַבָּא",
+        "back": "לְגַבּוֹת",
+        "reset": "אִתחוּל",
+        "response_required" :"נדרשת תגובה",
+        "unanswered": {
+            "type": "function",
+            "arguments":"n",
+            "body":"return `יש ${n} שאל${n>1?'ות':'ה'} ללא מענה בדף זה בבקשה ענה על השאל${n>1?'ות':'ה'}`"
         }
     }
 }

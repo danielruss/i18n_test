@@ -7,12 +7,7 @@ export class i18n{
     async load_messages(url){
         let msg_obj = await (await fetch(url)).json()
         this.#langMap = new Map()
-        let default_lang=null
         Object.entries(msg_obj).forEach( ([key, value]) => {
-            if (key == "default"){
-                default_lang=value;
-                return;
-            }
             console.log(`... working on language ${key}`)
             let currMap = new Map();
             currMap.set("_lang",key)
@@ -22,9 +17,13 @@ export class i18n{
             this.#langMap.set(key,currMap)
         });
         // set the default current map.
-        // if it is not defined, use the first in the 
-        this.#defaultMap = this.#langMap.get(default_lang) ?? this.#langMap.values().next().value
-        this.#currentMap = this.#defaultMap
+        // if it is not defined, use the browser defaultss...
+        await this.set_locale(navigator.languages)
+        // use the first in the json file...
+        if (!this.#currentMap){
+            this.#currentMap =  this.#langMap.values().next().value;
+        }
+        this.#defaultMap = this.#currentMap
         console.log(msg_obj)
         console.log(this.#langMap)
     }
@@ -56,6 +55,7 @@ export class i18n{
             }
         }
     }
+
     get_message(key,...args){
         let msg = this.#currentMap.get(key)
         if (msg?.type=="function"){
